@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6cdfc203e2913d40944187034307133, type: 3}
+  m_Name: LaserProjectile
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  abilityName: Laser
+  description: "Um pequeno projetil que \xE9 disparado da frente da nave"
+  abilityPrefab: {fileID: 4569872370860862215, guid: d7c3a030d6f475845a5a71878cc7b1e8, type: 3}
+  attributes:
+  - tagAttribute: attribute_damage
+    baseValue: 10
+  - tagAttribute: attribute_cooldown
+    baseValue: 2
+  - tagAttribute: attribute_projectile_count
+    baseValue: 1
+  - tagAttribute: attribute_projectile_speed
+    baseValue: 3
+  - tagAttribute: attribute_life_time
+    baseValue: 1
+  - tagAttribute: attribute_projectile_angle
+    baseValue: 45
