@@ -16,26 +16,7 @@ public class AbilityData : ScriptableObject
 
     private void OnEnable()
     {
-        // Inicializa todos os atributos ao carregar o ScriptableObject
-        foreach (var attribute in attributes)
-        {
-            attribute.Initialize();
-        }
+        AttributeUtils.InitializeAllAttributes(attributes);
     }
-
-
-    public Attribute ReturnAttribute(string tag)
-    {
-        foreach (var attribute in attributes)
-        {
-
-            if (attribute.TagAttribute.ToLower().Contains(tag.ToLower()) || tag.ToLower().Contains(attribute.TagAttribute.ToLower()))
-            {
-                return attribute;
-            }
-        }
-        return null;
-    }
-
 }
 

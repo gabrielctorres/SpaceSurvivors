@@ -28,4 +28,4 @@ MonoBehaviour:
   - tagAttribute: attribute_life_time
     baseValue: 1
   - tagAttribute: attribute_projectile_angle
-    baseValue: 45
+    baseValue: 25

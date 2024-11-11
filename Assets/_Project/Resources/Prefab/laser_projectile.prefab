@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4569872370860862213}
   - component: {fileID: -1636892085493272187}
+  - component: {fileID: 8200806377699108900}
+  - component: {fileID: 6366100484647082266}
   m_Layer: 0
   m_Name: laser_projectile
   m_TagString: Untagged
@@ -54,6 +56,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8200806377699108900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569872370860862215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7799a28a9b6074343aa0c1156d975fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &6366100484647082266
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569872370860862215}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &6155186447722337989
 GameObject:
   m_ObjectHideFlags: 0

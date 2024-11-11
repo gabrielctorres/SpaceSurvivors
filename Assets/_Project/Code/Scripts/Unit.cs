@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<Attribute> attributes = new List<Attribute>();
+    public Attribute ReturnAttribute(string tag)
     {
+        foreach (var attribute in attributes)
+        {
 
+            if (attribute.TagAttribute.ToLower().Contains(tag.ToLower()) || tag.ToLower().Contains(attribute.TagAttribute.ToLower()))
+            {
+                return attribute;
+            }
+        }
+        return null;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

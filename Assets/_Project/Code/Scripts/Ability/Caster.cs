@@ -12,16 +12,16 @@ public class Caster : MonoBehaviour
             UpgradeAbilitiesByAttribute("Projectile", 1f);
         }
 
-        // Atualiza o cooldown e tenta conjurar cada habilidade
+
         foreach (var slot in abilitySlots)
         {
             slot.UpdateCooldown(Time.deltaTime);
 
-            // Verifica se o cooldown permite a conjuração
+
             if (slot.IsReady)
             {
                 CastAbility(slot);
-                slot.ActivateCooldown(); // Reinicia o cooldown após conjurar
+                slot.ActivateCooldown();
             }
         }
     }
@@ -38,11 +38,12 @@ public class Caster : MonoBehaviour
         // Verifica o tipo da habilidade e instancia de forma modular
         Ability ability = CreateAbilityInstance(abilityData);
         ability?.Activate(this);
+
     }
 
     private Ability CreateAbilityInstance(AbilityData abilityData)
     {
-        var projectileAttribute = abilityData.ReturnAttribute("Projectile");
+        var projectileAttribute = AttributeUtils.ReturnAttribute("Projectile", abilityData.attributes);
         if (projectileAttribute != null)
         {
             return new ProjectileAbility(abilityData);
@@ -59,7 +60,7 @@ public class Caster : MonoBehaviour
             if (slot.abilityData != null)
             {
                 // Tenta obter o atributo com o tag específico
-                var attribute = slot.abilityData.ReturnAttribute(attributeTag);
+                var attribute = AttributeUtils.ReturnAttribute(attributeTag, slot.abilityData.attributes);
                 if (attribute != null)
                 {
                     attribute.AddModifier(upgradeValue);
@@ -93,7 +94,7 @@ public class CasterSlot
     public void ActivateCooldown()
     {
         // Verifica se existe um atributo de cooldown
-        var cooldownAttribute = abilityData.ReturnAttribute("Cooldown");
+        var cooldownAttribute = AttributeUtils.ReturnAttribute("Cooldown", abilityData.attributes);
         if (cooldownAttribute != null)
         {
             cooldownTimer = cooldownAttribute.CurrentValue;

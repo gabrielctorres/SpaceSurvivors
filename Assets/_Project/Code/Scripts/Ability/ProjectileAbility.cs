@@ -9,17 +9,18 @@ public class ProjectileAbility : Ability
     public override void Activate(Caster caster)
     {
         // Obter o número de projéteis e ângulo do cone a partir dos atributos
-        var projectileCountAttr = abilityData.ReturnAttribute("Projectile");
+        var projectileCountAttr = AttributeUtils.ReturnAttribute("Projectile", abilityData.attributes);
+
         int projectileCount = projectileCountAttr != null ? Mathf.RoundToInt(projectileCountAttr.CurrentValue) : 1;
 
-        var coneAngleAttr = abilityData.ReturnAttribute("Projectile_Angle");
+        var coneAngleAttr = AttributeUtils.ReturnAttribute("Projectile_Angle", abilityData.attributes);
         float coneAngle = coneAngleAttr != null ? coneAngleAttr.CurrentValue : 45f; // Ângulo do cone (por exemplo, 45 graus)
 
         // Ângulo entre cada projétil dentro do cone
-        float angleStep = coneAngle / Mathf.Max(projectileCount - 1, 1);
+        float angleStep = projectileCount > 1 ? coneAngle / (projectileCount - 1) : 0f;
 
         // Ângulo inicial para centralizar o cone na direção do caster
-        float startAngle = -coneAngle / 2f;
+        float startAngle = projectileCount > 1 ? -coneAngle / 2f : 0f;
 
         for (int i = 0; i < projectileCount; i++)
         {
@@ -35,10 +36,10 @@ public class ProjectileAbility : Ability
             // Instancia o projétil e define sua direção
             GameObject projectile = Instantiate(abilityData.abilityPrefab, spawnPosition, Quaternion.identity);
             projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, projectileDirection); // Alinha o projétil na direção calculada
-            projectile.GetComponent<Rigidbody2D>().velocity = projectileDirection * (abilityData.ReturnAttribute("Projectile_Speed")?.CurrentValue ?? 10f);
+            projectile.GetComponent<Rigidbody2D>().velocity = projectileDirection * (AttributeUtils.ReturnAttribute("Projectile_Speed", abilityData.attributes)?.CurrentValue ?? 10f);
 
             // Define o tempo de vida do projétil, se aplicável
-            var lifetimeAttribute = abilityData.ReturnAttribute("Lifetime");
+            var lifetimeAttribute = AttributeUtils.ReturnAttribute("Lifetime", abilityData.attributes);
             if (lifetimeAttribute != null)
             {
                 Destroy(projectile, lifetimeAttribute.CurrentValue);
